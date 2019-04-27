@@ -5,8 +5,8 @@ class CreateLinks < ActiveRecord::Migration[5.2]
     create_table :links do |t|
       t.string :in_url
       t.text :out_url
-      t.integer :http_status
-      t.integer :counter
+      t.integer :http_status, default: 301
+      t.integer :counter, default: 0
       t.string :title
 
       t.timestamps

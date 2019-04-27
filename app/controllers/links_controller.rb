@@ -3,28 +3,35 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
 
+  skip_before_action :verify_authenticity_token
+
   def go
-    if params[:url].blank?
-      @link = Link.find_by_in_url!(params[:in_url])
-      redirect_to @link.out_url, status: @link.http_status
-    elsif !params[:url].blank?
-      render json: generateShortUrl(params[:url]), status: :ok
-    end
+    @link = Link.find_by_in_url!(params[:in_url])
+    @link.counter += 1 # increse counter
+    @link.save
+    redirect_to @link.out_url, status: @link.http_status
+  rescue ActiveRecord::RecordNotFound => e
+    render html: @link.errors, status: :unprocessable_entity
   end
 
   def top
-    @links = Link.all
+    @links = Link.order(counter: :desc).limit(100)
     render json: @links, status: :ok
   end
 
-  def generateShortUrl(url)
-    #generate shorter url
+  def generate_short_url
+    # generate shorter url
+    if !params[:url].blank?
+      render json: short_url(params[:url]), status: :ok
+    else
+      render json: @link.errors, status: :unprocessable_entity
+    end
   end
 
   # GET /links
   # GET /links.json
   def index
-    @links = Link.order(counter: :desc).limit(100)
+    @links = Link.all
   end
 
   # GET /links/1
@@ -80,6 +87,11 @@ class LinksController < ApplicationController
   end
 
   private
+
+  def short_url(_url)
+    # generate shorter url
+    @link = Link.create!(out_url: _url, counter: 1)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_link
