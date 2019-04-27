@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>In url:</strong>
+  <%= @link.in_url %>
+</p>
+
+<p>
+  <strong>Out url:</strong>
+  <%= @link.out_url %>
+</p>
+
+<p>
+  <strong>Http status:</strong>
+  <%= @link.http_status %>
+</p>
+
+<p>
+  <strong>Counter:</strong>
+  <%= @link.counter %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @link.title %>
+</p>
+
+<%= link_to 'Edit', edit_link_path(@link) %> |
+<%= link_to 'Back', links_path %>

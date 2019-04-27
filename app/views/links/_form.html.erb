@@ -1,0 +1,42 @@
+<%= form_with(model: link, local: true) do |form| %>
+  <% if link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :in_url %>
+    <%= form.text_field :in_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :out_url %>
+    <%= form.text_area :out_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :http_status %>
+    <%= form.number_field :http_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :counter %>
+    <%= form.number_field :counter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
