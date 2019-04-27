@@ -18,7 +18,7 @@ class LinksController < ApplicationController
   end
 
   def generateShortUrl(url)
-    
+    #generate shorter url
   end
 
   # GET /links
