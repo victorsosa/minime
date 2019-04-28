@@ -83,7 +83,7 @@ class Spider
   end
   end
 
-class ProgrammableWeb
+class WebCrawler
   attr_reader :root, :handler
 
   def initialize(root: 'https://wikipedia.org', handler: :process_index, **options)
@@ -112,7 +112,7 @@ class ProgrammableWeb
   end
 end
 
-spider = ProgrammableWeb.new
+spider = WebCrawler.new
 
 spider.results.lazy.take(5).each_with_index do |result, index|
   warn format('%-2s: %s', index, result.inspect)
