@@ -116,4 +116,6 @@ spider = WebCrawler.new
 
 spider.results.lazy.take(5).each_with_index do |result, index|
   warn format('%-2s: %s', index, result.inspect)
+
+  RestClient.post 'http://peopleware.do:3001/url.json', url: result[:url]
 end
