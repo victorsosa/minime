@@ -3,7 +3,7 @@
 class Link < ApplicationRecord
   validates :out_url, :http_status, presence: true
   validates :in_url, uniqueness: true
-  validates :out_url, url: true
+  validates :out_url, url: { schemes: ['https', 'http'] }
 
   after_create :scrap, :generate_short_url
 

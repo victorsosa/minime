@@ -57,6 +57,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'faker'
 gem 'mechanize'
+gem 'nokogiri'
 gem 'shortener'
-gem 'valid_url'
+gem 'validate_url'
