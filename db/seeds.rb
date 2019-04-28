@@ -99,21 +99,6 @@ class ProgrammableWeb
       # results[:link] = link.href
       spider.record _data.merge(fields)
     end
-
-    #   page.links_with(href: %r{/api/\w+$}).each do |link|
-    #     spider.enqueue(link.href, :process_api, name: link.text)
-    #   end
-  end
-
-  def process_api(page, data = {})
-    categories = page.search('article.node-api .tags').first.text.strip.split(/\s+/)
-    fields = page.search('#tabs-content .field').each_with_object({}) do |tag, results|
-      key = tag.search('label').text.strip.downcase.gsub(/[^\w]+/, ' ').gsub(/\s+/, '_').to_sym
-      val = tag.search('span').text
-      results[key] = val
-    end
-
-    spider.record data.merge(fields).merge(categories: categories)
   end
 
   def results(&block)
