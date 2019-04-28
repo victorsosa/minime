@@ -36,11 +36,13 @@ Things you may want to cover:
 
   First, build the app
   Used as right now for test env
-  sudo docker build -t docker.peopleware.do:5000/minime .
-  sudo docker push docker.peopleware.do:5000/minime
+
+  - sudo docker build -t docker.peopleware.do:5000/minime .
+  - sudo docker push docker.peopleware.do:5000/minime
 
   Run on server:
-  sudo docker pull docker.peopleware.do:5000/minime
-  sudo docker stop minime
-  sudo docker rm minime
-  sudo docker run -d -p 3001:3000 --restart=always --name minime docker.peopleware.do:5000/minime
+
+  - sudo docker pull docker.peopleware.do:5000/minime
+  - sudo docker stop minime
+  - sudo docker rm minime
+  - sudo docker run -d -p 3001:3000 --restart=always --name minime docker.peopleware.do:5000/minime
