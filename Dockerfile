@@ -36,5 +36,5 @@ COPY . .
 
 RUN bundle install
 RUN scripts/potential_asset_precompile.sh $precompileassets
-RUN bundle exec bin/delayed_job restart
+CMD ["bundle exec bin/delayed_job restart"]
 CMD ["./scripts/start_rails.sh"]
